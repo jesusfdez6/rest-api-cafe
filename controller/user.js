@@ -23,6 +23,7 @@ const usuariosGet =  async(req=request,res=response) =>{
 
 }
 
+
 const usuariosPost = async(req,res=response) =>{
 
    
@@ -54,17 +55,22 @@ const usuariosPost = async(req,res=response) =>{
 
 }
 
+
 const usuariosDelete = async(req,res=response) =>{
     const id = req.params.id
+    const usuarioAuth = req.usuarioAuth
     const eliminar = {estado:false};
     const usuario = await Usuario.findByIdAndUpdate(id,eliminar);
    
     res.json({
         msg:'update API',
-        usuario
+        usuario,
+        usuarioAuth
+        
     })
 
 }
+
 
 const usuariosPut = async(req,res=response) =>{
 
@@ -86,6 +92,7 @@ const usuariosPut = async(req,res=response) =>{
     })
 
 }
+
 
 module.exports = {
     usuariosGet,
