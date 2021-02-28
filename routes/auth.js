@@ -4,7 +4,8 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 
 const {
-    login
+    login,
+    googleSignIn
       } =require('../controller/auth');
 
 const router = Router();
@@ -12,11 +13,18 @@ const router = Router();
 
 router.post('/login',[
     check('correo', 'El correo no es valido').isEmail(),
-    check('password', 'El nombre es obligatorio').not().isEmpty(),
+    check('password', 'El password es obligatorio').not().isEmpty(),
    validarCampos
     
 
   ],login); 
+
+  router.post('/google',[
+    check('id_token', 'Token es necesario').not().isEmpty(),
+   validarCampos
+    
+
+  ],googleSignIn); 
 
 
   module.exports = router;
